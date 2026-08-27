@@ -8,6 +8,15 @@ import { BookingWizard } from "@/components/booking-wizard";
 import { useFavorites } from "@/hooks/use-favorites";
 import { bikes, categories, fa, locations, reviews, stats } from "@/lib/rental-data";
 import promoDark from "@/assets/promo-dark.jpg";
+import storyboardHero from "@/assets/storyboard-hero.png";
+import storyboardFrames from "@/assets/storyboard-frames.png";
+import appShowcase from "@/assets/app-showcase.png";
+
+const gallery = [
+  { src: storyboardHero, alt: "استوری‌بورد کامل هیرو اسکرول CycleX در ۱۲ فریم" },
+  { src: storyboardFrames, alt: "فریم‌های سکانس سینمایی هیرو CycleX" },
+  { src: appShowcase, alt: "نمای کلی رابط کاربری اپلیکیشن اجاره دوچرخه CycleX" },
+];
 
 export const Route = createFileRoute("/")({
   head: () => ({
