@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { Upload } from "lucide-react";
 
 /**
@@ -18,7 +18,7 @@ export function EditableImage({
 }) {
   const [url, setUrl] = useState<string | undefined>(src);
   const objectUrl = useRef<string | null>(null);
-  const inputId = useRef(`up-${Math.random().toString(36).slice(2)}`);
+  const inputId = useId();
 
   useEffect(() => {
     return () => {
@@ -38,14 +38,14 @@ export function EditableImage({
       )}
 
       <label
-        htmlFor={inputId.current}
+        htmlFor={inputId}
         className="absolute inset-x-0 bottom-0 flex cursor-pointer items-center justify-center gap-1.5 bg-foreground/55 py-1.5 text-[0.7rem] text-background opacity-0 transition-opacity duration-300 group-hover:opacity-100 focus-within:opacity-100 max-md:opacity-100"
       >
         <Upload className="size-3.5" />
         {label}
       </label>
       <input
-        id={inputId.current}
+        id={inputId}
         type="file"
         accept="image/*"
         className="sr-only"
