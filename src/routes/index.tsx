@@ -8,6 +8,15 @@ import { BookingWizard } from "@/components/booking-wizard";
 import { useFavorites } from "@/hooks/use-favorites";
 import { bikes, categories, fa, locations, reviews, stats } from "@/lib/rental-data";
 import promoDark from "@/assets/promo-dark.jpg";
+import storyboardHero from "@/assets/storyboard-hero.png";
+import storyboardFrames from "@/assets/storyboard-frames.png";
+import appShowcase from "@/assets/app-showcase.png";
+
+const gallery = [
+  { src: storyboardHero, alt: "استوری‌بورد کامل هیرو اسکرول CycleX در ۱۲ فریم" },
+  { src: storyboardFrames, alt: "فریم‌های سکانس سینمایی هیرو CycleX" },
+  { src: appShowcase, alt: "نمای کلی رابط کاربری اپلیکیشن اجاره دوچرخه CycleX" },
+];
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -44,6 +53,27 @@ function Index() {
   return (
     <div className="min-h-screen bg-background">
       <HeroSequence onBook={goBooking} />
+
+      {/* Design gallery — full-width */}
+      <section className="relative z-10 bg-background px-4 pt-10">
+        <h2 className="mx-auto max-w-md text-xl font-bold">طراحی کامل CycleX</h2>
+        <p className="mx-auto mt-1 max-w-md text-xs text-muted-foreground">
+          سکانس هیرو و تمام صفحات اپلیکیشن
+        </p>
+        <div className="mx-auto mt-5 max-w-3xl space-y-5">
+          {gallery.map((g) => (
+            <figure key={g.alt} className="glass overflow-hidden rounded-3xl">
+              <img
+                src={g.src}
+                alt={g.alt}
+                loading="lazy"
+                decoding="async"
+                className="w-full object-contain"
+              />
+            </figure>
+          ))}
+        </div>
+      </section>
 
       <main className="relative z-10 mx-auto max-w-md bg-background px-4 pb-32">
         {/* Categories */}
