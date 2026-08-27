@@ -54,6 +54,27 @@ function Index() {
     <div className="min-h-screen bg-background">
       <HeroSequence onBook={goBooking} />
 
+      {/* Design gallery — full-width */}
+      <section className="relative z-10 bg-background px-4 pt-10">
+        <h2 className="mx-auto max-w-md text-xl font-bold">طراحی کامل CycleX</h2>
+        <p className="mx-auto mt-1 max-w-md text-xs text-muted-foreground">
+          سکانس هیرو و تمام صفحات اپلیکیشن
+        </p>
+        <div className="mx-auto mt-5 max-w-3xl space-y-5">
+          {gallery.map((g) => (
+            <figure key={g.alt} className="glass overflow-hidden rounded-3xl">
+              <img
+                src={g.src}
+                alt={g.alt}
+                loading="lazy"
+                decoding="async"
+                className="w-full object-contain"
+              />
+            </figure>
+          ))}
+        </div>
+      </section>
+
       <main className="relative z-10 mx-auto max-w-md bg-background px-4 pb-32">
         {/* Categories */}
         <section className="pt-10">
