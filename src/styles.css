@@ -1,0 +1,187 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Design system: dark premium cycling rental app.
+ * Near-black green-tinted canvas, glass cards, neon-lime accent.
+ */
+
+@theme inline {
+  --radius-sm: 0.625rem;
+  --radius-md: 0.875rem;
+  --radius-lg: 1.25rem;
+  --radius-xl: 1.75rem;
+  --radius-2xl: 2rem;
+  --radius-3xl: 2.5rem;
+  --font-sans: "Vazirmatn", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Vazirmatn", ui-sans-serif, system-ui, sans-serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-surface: var(--surface);
+  --color-surface-foreground: var(--surface-foreground);
+  --color-bronze: var(--bronze);
+  --color-mango: var(--mango);
+  --color-lime: var(--lime);
+  --shadow-soft: var(--shadow-soft);
+  --shadow-elevated: var(--shadow-elevated);
+  --shadow-glow: var(--shadow-glow);
+}
+
+:root {
+  --radius: 1.25rem;
+  --background: #070a08;
+  --foreground: #f1f5ec;
+  --card: #10150f;
+  --card-foreground: #f1f5ec;
+  --popover: #10150f;
+  --popover-foreground: #f1f5ec;
+  --primary: #c8f02f;
+  --primary-foreground: #0a0f08;
+  --secondary: #171d15;
+  --secondary-foreground: #f1f5ec;
+  --muted: #171d15;
+  --muted-foreground: #99a396;
+  --accent: #1b2417;
+  --accent-foreground: #c8f02f;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --border: rgb(200 240 47 / 12%);
+  --input: rgb(241 245 236 / 16%);
+  --ring: #c8f02f;
+  --surface: #0d120c;
+  --surface-foreground: #f1f5ec;
+  --bronze: #c8f02f;
+  --mango: #c8f02f;
+  --lime: #c8f02f;
+  --shadow-soft: 0 1px 2px rgb(0 0 0 / 40%), 0 18px 40px -24px rgb(0 0 0 / 80%);
+  --shadow-elevated: 0 2px 6px rgb(0 0 0 / 45%), 0 34px 70px -30px rgb(0 0 0 / 90%);
+  --shadow-glow: 0 0 0 1px rgb(200 240 47 / 22%), 0 18px 44px -22px rgb(200 240 47 / 35%);
+}
+
+@utility glass {
+  background: color-mix(in oklab, var(--card) 78%, transparent);
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-soft);
+}
+
+@utility glow-ring {
+  box-shadow: var(--shadow-glow);
+}
+
+@utility text-wide {
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@utility hairline-link {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    bottom: -6px;
+    height: 1px;
+    background: var(--color-primary);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  &:hover::after {
+    transform: scaleX(1);
+  }
+}
+
+@utility reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition:
+    opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  &.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@utility float-slow {
+  animation: floaty 7s ease-in-out infinite;
+}
+
+@keyframes floaty {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--color-background);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: none;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-weight: 500;
+    letter-spacing: -0.02em;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+    .float-slow {
+      animation: none;
+    }
+  }
+}
