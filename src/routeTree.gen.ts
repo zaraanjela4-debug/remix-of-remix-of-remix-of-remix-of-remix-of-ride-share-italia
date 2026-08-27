@@ -10,16 +10,36 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as BookingRouteImport } from './routes/booking'
 import { Route as BookingsRouteImport } from './routes/bookings'
 import { Route as FavoritesRouteImport } from './routes/favorites'
 import { Route as LocationsRouteImport } from './routes/locations'
 import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as SupportRouteImport } from './routes/support'
 import { Route as BikesIndexRouteImport } from './routes/bikes.index'
 import { Route as BikesBikeIdRouteImport } from './routes/bikes.$bikeId'
+import { Route as BookingSuccessRouteImport } from './routes/booking.success'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BookingRoute = BookingRouteImport.update({
+  id: '/booking',
+  path: '/booking',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BookingsRoute = BookingsRouteImport.update({
@@ -42,6 +62,11 @@ const ProfileRoute = ProfileRouteImport.update({
   path: '/profile',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SupportRoute = SupportRouteImport.update({
+  id: '/support',
+  path: '/support',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BikesIndexRoute = BikesIndexRouteImport.update({
   id: '/bikes/',
   path: '/bikes/',
@@ -52,71 +77,110 @@ const BikesBikeIdRoute = BikesBikeIdRouteImport.update({
   path: '/bikes/$bikeId',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BookingSuccessRoute = BookingSuccessRouteImport.update({
+  id: '/success',
+  path: '/success',
+  getParentRoute: () => BookingRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/auth': typeof AuthRoute
+  '/booking': typeof BookingRouteWithChildren
   '/bookings': typeof BookingsRoute
   '/favorites': typeof FavoritesRoute
   '/locations': typeof LocationsRoute
   '/profile': typeof ProfileRoute
+  '/support': typeof SupportRoute
   '/bikes/$bikeId': typeof BikesBikeIdRoute
+  '/booking/success': typeof BookingSuccessRoute
   '/bikes/': typeof BikesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/auth': typeof AuthRoute
+  '/booking': typeof BookingRouteWithChildren
   '/bookings': typeof BookingsRoute
   '/favorites': typeof FavoritesRoute
   '/locations': typeof LocationsRoute
   '/profile': typeof ProfileRoute
+  '/support': typeof SupportRoute
   '/bikes/$bikeId': typeof BikesBikeIdRoute
+  '/booking/success': typeof BookingSuccessRoute
   '/bikes': typeof BikesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/auth': typeof AuthRoute
+  '/booking': typeof BookingRouteWithChildren
   '/bookings': typeof BookingsRoute
   '/favorites': typeof FavoritesRoute
   '/locations': typeof LocationsRoute
   '/profile': typeof ProfileRoute
+  '/support': typeof SupportRoute
   '/bikes/$bikeId': typeof BikesBikeIdRoute
+  '/booking/success': typeof BookingSuccessRoute
   '/bikes/': typeof BikesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/about'
+    | '/auth'
+    | '/booking'
     | '/bookings'
     | '/favorites'
     | '/locations'
     | '/profile'
+    | '/support'
     | '/bikes/$bikeId'
+    | '/booking/success'
     | '/bikes/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/about'
+    | '/auth'
+    | '/booking'
     | '/bookings'
     | '/favorites'
     | '/locations'
     | '/profile'
+    | '/support'
     | '/bikes/$bikeId'
+    | '/booking/success'
     | '/bikes'
   id:
     | '__root__'
     | '/'
+    | '/about'
+    | '/auth'
+    | '/booking'
     | '/bookings'
     | '/favorites'
     | '/locations'
     | '/profile'
+    | '/support'
     | '/bikes/$bikeId'
+    | '/booking/success'
     | '/bikes/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  AuthRoute: typeof AuthRoute
+  BookingRoute: typeof BookingRouteWithChildren
   BookingsRoute: typeof BookingsRoute
   FavoritesRoute: typeof FavoritesRoute
   LocationsRoute: typeof LocationsRoute
   ProfileRoute: typeof ProfileRoute
+  SupportRoute: typeof SupportRoute
   BikesBikeIdRoute: typeof BikesBikeIdRoute
   BikesIndexRoute: typeof BikesIndexRoute
 }
@@ -128,6 +192,27 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/booking': {
+      id: '/booking'
+      path: '/booking'
+      fullPath: '/booking'
+      preLoaderRoute: typeof BookingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/bookings': {
@@ -158,6 +243,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProfileRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/support': {
+      id: '/support'
+      path: '/support'
+      fullPath: '/support'
+      preLoaderRoute: typeof SupportRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/bikes/': {
       id: '/bikes/'
       path: '/bikes'
@@ -172,15 +264,37 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BikesBikeIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/booking/success': {
+      id: '/booking/success'
+      path: '/success'
+      fullPath: '/booking/success'
+      preLoaderRoute: typeof BookingSuccessRouteImport
+      parentRoute: typeof BookingRoute
+    }
   }
 }
 
+interface BookingRouteChildren {
+  BookingSuccessRoute: typeof BookingSuccessRoute
+}
+
+const BookingRouteChildren: BookingRouteChildren = {
+  BookingSuccessRoute: BookingSuccessRoute,
+}
+
+const BookingRouteWithChildren =
+  BookingRoute._addFileChildren(BookingRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  AuthRoute: AuthRoute,
+  BookingRoute: BookingRouteWithChildren,
   BookingsRoute: BookingsRoute,
   FavoritesRoute: FavoritesRoute,
   LocationsRoute: LocationsRoute,
   ProfileRoute: ProfileRoute,
+  SupportRoute: SupportRoute,
   BikesBikeIdRoute: BikesBikeIdRoute,
   BikesIndexRoute: BikesIndexRoute,
 }
